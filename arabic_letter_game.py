@@ -120,16 +120,16 @@ screen_width = 1280
 screen_height = 720
 
 def show_intro_screen(display, w, h):
-    # Fill the screen with a solid color
+    # fill the screen with a solid color
     display[:] = np.full((h, w, 3), (30, 30, 30), dtype=np.uint8)
     
-    # Draw the game title
+    # draw the game title
     title_text = "Arabic Letter Learning Game"
     title_size = cv2.getTextSize(title_text, cv2.FONT_HERSHEY_SIMPLEX, 1.5, 3)[0]
     cv2.putText(display, title_text, 
                ((w - title_size[0]) // 2, h//2 - 100), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 255, 255), 3)
     
-    # Draw the instructions
+    # draw the instructions
     instructions = "Drag the correct letter according to the sound to the bin.\nUse your index finger, and if you picked up a wrong letter, point your index finger down to let go."
     y_offset = h//2 - 20
     for line in instructions.split('\n'):
@@ -138,16 +138,16 @@ def show_intro_screen(display, w, h):
                    ((w - line_size[0]) // 2, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
         y_offset += 40
     
-    # Draw the start prompt
+    # fraw the start prompt
     start_text = "Press SPACEBAR to begin"
     start_size = cv2.getTextSize(start_text, cv2.FONT_HERSHEY_SIMPLEX, 1, 2)[0]
     cv2.putText(display, start_text, 
                ((w - start_size[0]) // 2, h//2 + 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
     
-    # Display the intro screen
+    # intro screen
     cv2.imshow("Arabic Letter Game", display)
     
-    # Wait for the spacebar to be pressed
+    # spacebar begins the game
     while True:
         key = cv2.waitKey(1) & 0xFF
         if key == ord(' '):
@@ -194,7 +194,7 @@ def spawn_new_letters(w):
         'in_bin': False
     })
     
-    # Add 2-3 random distractor letters
+    # 2-3 random distractor letters
     num_distractors = random.randint(2, 3)
     available_indices = [i for i in range(len(ARABIC_LETTERS)) 
                         if i != target_letter_idx and i not in last_target_letters]
@@ -309,18 +309,18 @@ while True:
             cv2.rectangle(display, (45, y_pos-30), (w-45, y_pos+10), 
                          (30, 30, 30), -1)  # Darker background
             
-            # Draw target letter with darker background
+            # raw target letter with darker background
             target_bg_color = (40, 40, 40)  # Darker background for letters
             cv2.rectangle(display, (150, y_pos-25), (250, y_pos+5), target_bg_color, -1)
             display = draw_arabic_text(display, answer['target'], 
                                      (170, y_pos-30), font_size=40, color=(255, 255, 255))  # Further adjusted y-position
             
-            # Draw arrow
+            # arrow
             cv2.putText(display, "->", (270, y_pos),
                        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
             
-            # Draw selected letter with darker background
-            selected_bg_color = (40, 40, 40)  # Darker background for letters
+            # selected letter with darker background
+            selected_bg_color = (40, 40, 40)  
             cv2.rectangle(display, (320, y_pos-25), (420, y_pos+5), selected_bg_color, -1)
             display = draw_arabic_text(display, answer['selected'],
                                      (340, y_pos-30), font_size=40, color=(255, 255, 255))  # Further adjusted y-position
@@ -334,7 +334,7 @@ while True:
             y_pos += 50
         
         # Draw exit instruction
-        cv2.putText(display, "Press 'Q' to exit", 
+        cv2.putText(display, "Press 'ESC' to exit", 
                    (w//2 - 100, h-30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
         
         cv2.imshow("Arabic Letter Game", display)
@@ -576,15 +576,6 @@ while True:
         cv2.putText(display, score_message, (text_x, text_y),
                    cv2.FONT_HERSHEY_SIMPLEX, font_scale,
                    (255, 255, 255), 2, cv2.LINE_AA)
-    
-    # Display instructions with modern design
-    instr_bg = display.copy()
-    instr_text = "Drag the correct letter according to the sound to the bin. Use your index finger, and if you picked up a wrong letter, point your index finger down to let go."
-    text_size = cv2.getTextSize(instr_text, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)[0]
-    cv2.rectangle(instr_bg, (10, h-40), (text_size[0] + 30, h-5), (0, 0, 0), -1)
-    cv2.addWeighted(instr_bg, 0.3, display, 0.7, 0, display)
-    cv2.putText(display, instr_text, (20, h-15),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
     
     # Show frame
     cv2.imshow("Arabic Letter Game", display)

@@ -1,58 +1,49 @@
-# Face Detector
+# Arabic Letter Learning Game
 
-This project implements real-time face detection using OpenCV and a pre-trained Caffe model. It captures video from your webcam and detects faces in each frame, drawing bounding boxes around detected faces with confidence scores.
+This game is designed to help users learn Arabic letters through an interactive and engaging experience. The game uses a webcam to track hand movements, allowing players to drag and drop letters into a bin based on audio prompts.
+
+## How to Run the Game
+
+1. **Ensure you have the necessary dependencies installed**:
+   - Python 3
+   - OpenCV
+   - Pygame
+   - gTTS
+   - imutils
+   - cvzone
+
+2. **Launch the game**:
+   ```bash
+   python3 arabic_letter_game.py
+   ```
+
+3. **Gameplay Instructions**:
+   - The game will start with an intro screen displaying the title and instructions.
+   - Press the `SPACEBAR` to begin the game.
+   - Use your index finger to drag the correct letter to the bin based on the sound prompt.
+   - If you pick up the wrong letter, point your index finger down to release it.
+
+4. **Exit the Game**:
+   - Press the `ESC` key to exit the game at any time.
 
 ## Features
 
-- Real-time face detection from webcam feed
-- Uses a pre-trained Caffe model for efficient face detection
-- Displays confidence scores for each detected face
-- Adjustable confidence threshold
-
-## Prerequisites
-
-Before running this program, make sure you have the following installed:
-- Python 3.6+
-- OpenCV (cv2)
-- imutils
-- numpy
-
-You can install the required packages using pip:
-pip install opencv-python imutils numpy
-
-## Usage
-
-To run the face detection program:
-
-1. Clone this repository:
-git clone https://github.com/ahussein0/face_detector.git
-cd face_detector
-
-2. Run the script with the following command:
-   python detect_faces_videos.py --prototxt deploy.prototxt --model cafe.caffemodel
-
-3. Optional: Adjust the confidence threshold (default is 0.5):
-   python detect_faces_videos.py --prototxt deploy.prototxt --model cafe.caffemodel --confidence 0.7
-
-4. To exit the program, press 'q' while the video window is active.
-
-## How it works
-
-1. The program initializes the video stream from your default webcam.
-2. For each frame:
-- It resizes the frame and prepares it for the neural network.
-- The frame is passed through the Caffe model to detect faces.
-- Detected faces are outlined with rectangles, and confidence scores are displayed.
-- The processed frame is shown in a window.
-3. This process continues until the user presses 'q' to quit.
+- Interactive gameplay using hand tracking.
+- Audio prompts for letter recognition.
+- Real-time feedback on correct and incorrect answers.
+- Review screen at the end of the game to see your performance.
 
 ## Notes
 
-- Ensure your webcam is connected and functioning properly.
-- The Caffe model files (`deploy.prototxt` and `cafe.caffemodel`) should be in the same directory as the Python script.
-- Adjust the confidence threshold to balance between detection accuracy and false positives.
-- Be sure not to open the cafe.caffemodel file. File corruption may occur.
+- Ensure your webcam is properly connected and accessible by your system.
+- The game is best played in a well-lit environment for optimal hand tracking.
 
+## Customization
+
+You can adjust the game parameters in the code:
+- `game_speed`: Controls how fast letters fall
+- `letter_size`: Controls the size of the letters
+- `ARABIC_LETTERS`: You can modify this list to include different Arabic letters or characters
 
 Sources:
 caffemodel: https://github.com/opencv/opencv_3rdparty/blob/dnn_samples_face_detector_20170830/res10_300x300_ssd_iter_140000.caffemodel
