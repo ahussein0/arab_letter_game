@@ -49,4 +49,4 @@ Sources:
 caffemodel: https://github.com/opencv/opencv_3rdparty/blob/dnn_samples_face_detector_20170830/res10_300x300_ssd_iter_140000.caffemodel
 deploy.prototxt: https://github.com/opencv/opencv/blob/master/samples/dnn/face_detector/deploy.prototxt
 
-Project Link: [https://github.com/ahussein0/face_detector](https://github.com/ahussein0/face_detector)
+Project Link: [https://github.com/ahussein0/face_detector](https://https://github.com/ahussein0/arabic_letter_game)
